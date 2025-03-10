@@ -1,0 +1,141 @@
+// Daily devotional collection to match with verses
+const devotionalCollection = {
+    "John 3:16": {
+        title: "God's Great Love",
+        content: "God's love for us is so immense that He gave His most precious gift - His Son. This verse reminds us that believing in Jesus isn't just about mental assent, but about trusting Him with our eternal destiny. Today, reflect on the depth of God's love for you personally, and how it changes your perspective on life's challenges."
+    },
+    "Psalm 23:1": {
+        title: "The Divine Shepherd",
+        content: "When David wrote about the Lord being his shepherd, he was drawing on his own experience as a shepherd. He knew how a shepherd provides, protects, and guides. If the Lord is your shepherd, you will never lack what you truly need. Consider today: what are you anxious about? Can you trust your Shepherd to provide?"
+    },
+    "Philippians 4:13": {
+        title: "Strength Through Christ",
+        content: "Paul wrote these words while in prison, yet he had learned the secret of being content in any situation. The strength Christ gives isn't always to change our circumstances, but often to thrive within them. Today, identify one challenge you're facing and ask Christ specifically for His strength in that area."
+    },
+    "Romans 8:28": {
+        title: "God's Good Purpose",
+        content: "This verse doesn't promise that everything will be good, but that God works all things together for good. Like a master weaver, He takes even the dark threads and incorporates them into a beautiful tapestry. Think of a difficult situation in your life - can you begin to see how God might be working it for good?"
+    },
+    "Matthew 6:33": {
+        title: "First Things First",
+        content: "Jesus teaches us about priorities in this verse. When we focus first on God's kingdom and righteousness, everything else falls into its proper place. Take a moment today to evaluate your priorities. Are you seeking God's kingdom first, or are you chasing after lesser things?"
+    },
+    "Isaiah 40:31": {
+        title: "Renewed Strength",
+        content: "This beautiful promise speaks of supernatural rejuvenation for those who place their hope in the Lord. The image of soaring eagles, running without weariness, and walking without fainting illustrates the different ways God sustains us. Sometimes He enables us to soar above circumstances; other times He gives endurance to run the long race; and sometimes He simply helps us take the next step. What kind of strength do you need from Him today?"
+    },
+    "John 14:6": {
+        title: "The Only Way",
+        content: "In our pluralistic world, Jesus' exclusive claim can seem narrow-minded. Yet His statement isn't born of arrogance but of reality. Just as there's only one way to solve a mathematical equation correctly, there's only one way to restore our relationship with God. Jesus doesn't merely show the way; He IS the way. He doesn't merely teach truth; He IS truth. He doesn't merely offer life; He IS life. Today, thank Him for being your way, truth, and life."
+    },
+    "Proverbs 3:5-6": {
+        title: "Beyond Understanding",
+        content: "Our natural inclination is to lean on our own understanding—our education, experience, and reasoning. Yet God calls us to a deeper trust that acknowledges the limitations of human wisdom. When we submit our ways to Him, He promises to direct our paths. This doesn't mean we stop thinking, but rather that we think with the humility of recognizing that God's thoughts are higher than ours. Is there an area where you need to stop leaning on your own understanding today?"
+    },
+    "Jeremiah 29:11": {
+        title: "Future Hope",
+        content: "God spoke these words to Israelites in Babylonian exile, facing 70 years of displacement. His promise wasn't immediate rescue but good plans for their future. Similarly, God may not immediately extract us from difficult situations, but He assures us that He's working toward our welfare, not our harm—toward hope, not despair. How does knowing that God has good plans for your future affect your present circumstances?"
+    },
+    "Joshua 1:9": {
+        title: "Courage in God's Presence",
+        content: "As Joshua prepared to lead Israel into the Promised Land, God commanded him to be strong and courageous. The basis for this courage wasn't Joshua's abilities but God's presence. The same is true for us—our courage comes not from our own resources but from the reality that God is with us wherever we go. What situation are you facing today that requires courage? Remember, you face it with God at your side."
+    },
+    "Psalm 46:10": {
+        title: "Sacred Stillness",
+        content: "In our busy, noisy world, stillness is increasingly rare. Yet God invites us to be still and know that He is God. In that stillness, we recognize His sovereignty and cease our striving. When we're still before God, we stop trying to control outcomes and instead trust His control. Today, set aside a few minutes for complete stillness before God, acknowledging His lordship over every area of your life."
+    },
+    "Philippians 4:6-7": {
+        title: "The Antidote to Anxiety",
+        content: "Paul offers a practical prescription for anxiety: prayer with thanksgiving. Instead of worrying about everything, we're to pray about everything—with an attitude of gratitude. The result is supernatural peace that guards our hearts and minds like a sentinel. What anxiety threatens your peace today? Follow Paul's prescription: turn your worry into prayer, add thanksgiving, and experience God's peace."
+    },
+    "Romans 12:2": {
+        title: "Mind Transformation",
+        content: "The battleground for spiritual transformation is the mind. The world constantly pressures us to conform to its patterns of thinking, but renewal comes through changing how we think. As our minds are transformed by God's Word and Spirit, we begin to discern His will more clearly. Today, identify one area where your thinking has been shaped more by the world than by God's truth, and ask Him to begin renewing your mind in that area."
+    },
+    "Psalm 119:105": {
+        title: "Light for the Path",
+        content: "God's Word provides illumination for our journey—light for the path ahead and for our next step. Sometimes we wish for a floodlight to see far into the distance, but God often gives just enough light for the present step. His Word is both a lamp for our feet (immediate steps) and a light for our path (general direction). How might you need God's Word to illuminate your path today?"
+    },
+    "Galatians 5:22-23": {
+        title: "Fruit of the Spirit",
+        content: "The fruit of the Spirit isn't something we produce through our own efforts but what naturally grows as the Holy Spirit works within us. Just as an apple tree doesn't strain to produce apples, we don't manufacture love, joy, and peace through willpower. Instead, as we abide in Christ, these qualities gradually develop. Which aspect of the Spirit's fruit would you like to see more of in your life? Ask the Spirit to cultivate it within you."
+    },
+    "Matthew 11:28": {
+        title: "Rest for the Weary",
+        content: "Jesus invites all who are weary and burdened to come to Him for rest. This rest isn't merely physical relaxation but soul-deep restoration. The burdens we carry—whether stress, worry, sin, or the weight of trying to earn God's favor—can all be laid down at Jesus' feet. He offers a better, lighter way to live. What burden do you need to bring to Jesus today? Hear His gentle invitation to come and find rest."
+    },
+    "1 Peter 5:7": {
+        title: "Casting Cares",
+        content: "The image here is of deliberately throwing our anxieties onto God—not just some of them, but all of them. Why should we do this? Because He cares for us. Our concerns matter to Him. When we truly believe that God cares about us personally, casting our anxieties on Him becomes natural. What cares have you been carrying that you need to cast on Him today? Remember, He's not reluctant to receive them; He cares for you."
+    },
+    "Psalm 37:4": {
+        title: "Aligned Desires",
+        content: "This verse isn't a formula for getting whatever we want; it's about aligning our desires with God's. As we delight in the Lord—finding our greatest joy in Him—our desires naturally begin to reflect His will. Then, as those God-shaped desires are fulfilled, we experience the deepest satisfaction. Today, consider: Are you delighting in God Himself, or merely in what He can do for you?"
+    },
+    "1 Thessalonians 5:16-18": {
+        title: "Always, Continually, Everything",
+        content: "These three commands—rejoice always, pray continually, give thanks in all circumstances—seem impossibly demanding. Yet they describe a life fully aligned with God's presence. Joy, prayer, and thanksgiving become our default responses rather than occasional activities. And remarkably, this is God's will for us in Christ Jesus. Today, practice these three commands in small ways, recognizing God's presence in every moment."
+    },
+    "Hebrews 11:1": {
+        title: "Substance of Faith",
+        content: "Faith isn't blind optimism or wishful thinking. It's confidence in what we hope for and assurance about what we don't yet see. Faith gives substance to our hopes and makes unseen realities evident. It's the spiritual perception that sees what physical eyes cannot. Throughout Hebrews 11, we see how faith enabled people to live as if God's promises were already fulfilled. How might your life look different if you had this kind of faith in God's promises?"
+    },
+    "Ephesians 2:10": {
+        title: "Masterpiece in Progress",
+        content: "You are God's masterpiece, His poiema (the Greek word from which we get 'poem')—His work of art. God has designed you with purpose and creativity. He saved you by grace, not because of your works, but He saved you for good works, which He prepared in advance. Today, recognize the dignity of being God's craftsmanship, and look for the good works He has already arranged for you to walk in."
+    },
+    "Colossians 3:23-24": {
+        title: "Working for the Lord",
+        content: "Whether washing dishes, caring for children, sitting in meetings, or any other task, this verse transforms our perspective. When we work for the Lord rather than for human approval, every task becomes sacred. Our motivation changes from pleasing people to honoring Christ. And we're assured that no work done for Him goes unrewarded. Today, approach your work—whatever it is—as service to Christ, not merely to people."
+    },
+    "Psalm 103:8": {
+        title: "The Character of God",
+        content: "This beautiful description of God's character appears repeatedly throughout Scripture. He is compassionate toward our weaknesses, gracious in His gifts, patient with our failures, and abundant in His love. This isn't just theological truth; it's personal reality for those who know Him. How might your day be different if you consciously remembered these four attributes of God—His compassion, grace, patience, and love?"
+    },
+    "2 Corinthians 5:17": {
+        title: "New Creation",
+        content: "When we come to Christ, we're not merely improved or reformed but made completely new. The old person we once were has passed away, and a new creation has come. This transformation affects every aspect of life—values, attitudes, relationships, purpose. Though the process of living out this new identity continues throughout life, the change of identity is immediate and complete. Today, consider what area of your life still needs to catch up with your new identity in Christ."
+    },
+    "Ephesians 3:20": {
+        title: "Immeasurably More",
+        content: "Our God is not stingy or limited. He is able to do far more than we could ask or imagine. The limitless power that raised Christ from the dead is now at work within us who believe. When we pray, we can pray with confident expectation that God can exceed our greatest requests and most creative imaginings. How might this truth change the way you pray today?"
+    },
+    "Psalm 27:1": {
+        title: "Freedom from Fear",
+        content: "David asks two rhetorical questions with obvious answers. If the Lord is our light (dispelling darkness), our salvation (ensuring eternal safety), and our stronghold (providing present protection), then fear becomes illogical. What—or whom—should we fear if the Creator and Sustainer of the universe is on our side? Today, identify a specific fear and counter it with this truth: The Lord is my light and my salvation."
+    },
+    "1 John 4:9-10": {
+        title: "Love Defined",
+        content: "Real love is not defined by our love for God but by His love for us. God didn't wait for us to love Him first; He took the initiative when we were still unlovable. The measure of His love is the gift of His Son as an atoning sacrifice. This means that nothing can separate us from God's love—it's not dependent on our performance or worthiness. Today, rest in the reality that you are loved by God not because of anything you've done but because of what Christ has done."
+    },
+    "Genesis 1:1": {
+        title: "The Foundation of Faith",
+        content: "The very first verse of Scripture establishes a foundation for everything that follows. God exists, and He created everything from nothing. This means the universe is not random or purposeless but designed and meaningful. Our lives have purpose because they're part of God's grand narrative that began with creation. Today, observe the created world around you and thank God for the evidence of His creative power."
+    },
+    "John 10:10": {
+        title: "Abundant Life",
+        content: "Jesus contrasts His purpose with that of the thief (Satan). While the enemy comes to steal, kill, and destroy, Jesus comes to give life abundantly. This abundant life isn't primarily about material prosperity but about spiritual richness—peace, joy, purpose, and connection with God. It's life overflowing with meaning and satisfaction. Today, ask yourself: Am I experiencing the abundant life Jesus promised? If not, what might be hindering it?"
+    }
+};
+
+// Function to get devotional for a verse reference
+function getDevotionalForVerse(verseText) {
+    // Extract the reference from the verse text
+    const referenceMatch = verseText.match(/^([^-]+)/);
+    if (referenceMatch) {
+        const reference = referenceMatch[1].trim();
+        
+        // Look up in devotional collection
+        for (const key in devotionalCollection) {
+            if (reference.includes(key)) {
+                return devotionalCollection[key];
+            }
+        }
+    }
+    
+    // Return a default devotional if no match found
+    return {
+        title: "Daily Reflection",
+        content: "Take time today to meditate on this verse. What is God saying to you through His Word? How can you apply this truth to your life today? Consider journaling your thoughts or sharing this verse with someone who might be encouraged by it."
+    };
+}
