@@ -1,0 +1,181 @@
+// Start the clock
+function startClock() {
+    updateClock();
+    setInterval(updateClock, 1000);
+}
+
+// Update the clock display
+function updateClock() {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const seconds = now.getSeconds().toString().padStart(2, '0');
+    
+    document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+    
+    // Update verse every minute
+    if (seconds === '00') {
+        updateVerse(hours, minutes);
+    }
+}
+
+// Update the verse based on time
+function updateVerse(hours, minutes) {
+    const timeKey = `${hours}:${minutes}`;
+    
+    // Try to find exact match
+    let verse = verseCollection[timeKey];
+    
+    // If no exact match, try to find closest match
+    if (!verse) {
+        verse = getClosestVerse(timeKey);
+    }
+    
+    // If category filter is active, apply it
+    if (window.currentCategoryFilter) {
+        let categoryMatches = false;
+        
+        // Look through all verses to find a match for both time and category
+        for (const key in verseCollection) {
+            const currentVerse = verseCollection[key];
+            if (currentVerse.categories.includes(window.currentCategoryFilter)) {
+                // Calculate time difference
+                const [vHours, vMinutes] = key.split(':').map(Number);
+                const [cHours, cMinutes] = timeKey.split(':').map(Number);
+                
+                const vTotalMinutes = vHours * 60 + vMinutes;
+                const cTotalMinutes = cHours * 60 + cMinutes;
+                
+                const diff = Math.abs(vTotalMinutes - cTotalMinutes);
+                
+                // If it's within 30 minutes and matches category, use it
+                if (diff <= 30) {
+                    verse = currentVerse;
+                    categoryMatches = true;
+                    break;
+                }
+            }
+        }
+        
+        // If no nearby verse matches the category, just use the original verse
+        if (!categoryMatches) {
+            verse = verseCollection[timeKey] || getClosestVerse(timeKey);
+        }
+    }
+    
+    const verseElement = document.getElementById('verseDisplay');
+    verseElement.textContent = verse.text;
+    verseElement.setAttribute('data-reference', verse.text.split(' - ')[0]);
+    
+    // Check if this verse is favorited
+    updateFavoriteButtonState();
+}
+
+// Get closest verse if exact time not found
+function getClosestVerse(timeString) {
+    const [hours, minutes] = timeString.split(':').map(Number);
+    const targetMinutes = hours * 60 + minutes;
+    
+    let closestVerse = null;
+    let closestDistance = Infinity;
+    
+    for (const time in verseCollection) {
+        const [verseHours, verseMinutes] = time.split(':').map(Number);
+        const verseMinutesTotal = verseHours * 60 + verseMinutes;
+        const distance = Math.abs(verseMinutesTotal - targetMinutes);
+        
+        if (distance < closestDistance) {
+            closestDistance = distance;
+            closestVerse = verseCollection[time];
+        }
+    }
+    
+    return closestVerse || {
+        text: "Psalm 119:105 - Your word is a lamp for my feet, a light on my path.",
+        categories: ["wisdom", "faith"]
+    };
+}
+
+// Display verse of the day
+function displayVerseOfDay() {
+    // Get today's date in a simple format (e.g., "2025-03-10")
+    const today = new Date().toISOString().split('T')[0];
+    
+    // Use the date to seed a simple randomization
+    const dateHash = hashString(today);
+    
+    // Get all verse keys
+    const verseKeys = Object.keys(verseCollection);
+    
+    // Use the date hash to select a verse
+    const selectedVerseKey = verseKeys[dateHash % verseKeys.length];
+    const verseOfDay = verseCollection[selectedVerseKey];
+    
+    // Display the verse of the day
+    const verseOfDayElement = document.getElementById('verseOfDayDisplay');
+    verseOfDayElement.textContent = `Verse of the Day: ${verseOfDay.text}`;
+    verseOfDayElement.style.display = 'block';
+    
+    // Hide verse of day after 10 seconds and show current time verse
+    setTimeout(() => {
+        verseOfDayElement.style.display = 'none';
+    }, 10000);
+}
+
+// Simple string hash function
+function hashString(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        const char = str.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash; // Convert to 32bit integer
+    }
+    return Math.abs(hash);
+}
+
+// Toggle favorite status of current verse
+function toggleFavorite() {
+    let verseElement = document.getElementById('verseDisplay');
+    
+    // Check which verse is currently visible
+    if (verseElement.style.display === 'none') {
+        if (document.getElementById('favoriteVerseDisplay').style.display !== 'none') {
+            verseElement = document.getElementById('favoriteVerseDisplay');
+        } else if (document.getElementById('searchResultDisplay').style.display !== 'none') {
+            verseElement = document.getElementById('searchResultDisplay');
+        } else if (document.getElementById('verseOfDayDisplay').style.display !== 'none') {
+            verseElement = document.getElementById('verseOfDayDisplay');
+        }
+    }
+    
+    const verseText = verseElement.textContent.replace('Verse of the Day: ', '');
+    const reference = verseElement.getAttribute('data-reference') || verseText.split(' - ')[0];
+    
+    // Get existing favorites
+    let favorites = JSON.parse(localStorage.getItem('bibleClockFavorites') || '[]');
+    
+    // Check if already favorited
+    const isFavorite = favorites.some(fav => fav.text === verseText);
+    
+    if (isFavorite) {
+        // Remove from favorites
+        favorites = favorites.filter(fav => fav.text !== verseText);
+        showToast('Removed from favorites');
+    } else {
+        // Add to favorites
+        favorites.push({
+            text: verseText,
+            reference: reference,
+            timestamp: new Date().toISOString()
+        });
+        showToast('Added to favorites');
+    }
+    
+    // Save favorites
+    localStorage.setItem('bibleClockFavorites', JSON.stringify(favorites));
+    
+    // Update favorite button state
+    updateFavoriteButtonState();
+    
+    // Update favorites list if visible
+    if (document.querySelector
