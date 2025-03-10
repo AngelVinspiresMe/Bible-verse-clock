@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A clock that shows Bible verses based on the current time">
+    <meta name="theme-color" content="#3a5a78">
+    <title>Bible Verse Clock</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <!-- Base styles are inserted by JavaScript -->
+    <style>
+        /* Initial loading styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+        
+        .loading h1 {
+            color: #3a5a78;
+            margin-bottom: 1rem;
+        }
+        
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top: 4px solid #3a5a78;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading screen that shows until the app initializes -->
+    <div class="loading" id="loadingScreen">
+        <h1>Bible Verse Clock</h1>
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+    
+    <!-- Main app container -->
+    <div id="app" style="display: none;"></div>
+    
+    <!-- JavaScript files -->
+    <script src="verse-collection.js"></script>
+    <script src="devotional-collection.js"></script>
+    <script src="main.js"></script>
+    
+    <!-- Simple script to remove loading screen once app is initialized -->
+    <script>
+        window.addEventListener('load', function() {
+            // We'll use a timeout to ensure the app has time to initialize
+            setTimeout(function() {
+                document.getElementById('loadingScreen').style.display = 'none';
+                document.getElementById('app').style.display = 'block';
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
